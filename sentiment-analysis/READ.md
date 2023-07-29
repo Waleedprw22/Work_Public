@@ -1,7 +1,29 @@
-Using the source code from https://techvidvan.com/tutorials/python-sentiment-analysis/, I have implemented a wide variety of changes. One big change I implemented was that
-I turned the problem from a binary classification one to a multi label classification problem. Initially, the source code would take in data labeled as "Positive" or "Negative"
-and train a text classifying model. I decided to adjust the data pre-processing chunk of code so that I can keep the neutral sentiments. The factorizing part stayed the same
-but I used one hot encoding to transform the integer values for the labels into binary vectors. I also turned the model into a function so that I can conduct 
-hyper tuning of the parameters. I adjusted the dense layer to have 3 neurons instead of one as I will have 3 outcomes: Positive, Negative or Neutral. I also had to change
-the activation function to categorial_cross_entropy as I am dealing with multi label classification. The accuracy decreased from .96 to around .84 or so. I then made an algoritm that can iterate through different hyper-parameters and find those that provide the highest accuracy and to retain those. I also played around with the epoch values and realized if I increase it a bit, I can push the training accuracies to near .9 and val acuracies near .85. I then made an implementation that randomly generates 100 test sentences and test the model with it, providing the user with test accuracies as well. If I had access to GPUs, I would spend more time trying to optimize the model.
+
+
+## Sentiment Analysis Project
+
+### Overview
+Using the source code from https://techvidvan.com/tutorials/python-sentiment-analysis/, I have implemented a wide variety of changes to perform Sentiment Analysis on airline tweets. One significant modification I made was transforming the problem from binary classification to multi-label classification. Initially, the source code only handled "Positive" or "Negative" labels, but I adjusted the data preprocessing to retain neutral sentiments as well. I used factorization and one-hot encoding to transform the sentiment labels into binary vectors for the multi-label classification task.
+
+### Data Preprocessing
+During data preprocessing, the sentiment labels were factorized to numerical form, and then one-hot encoding was applied to represent them as binary vectors. This allowed us to consider "Positive," "Negative," and "Neutral" sentiments as separate classes for the LSTM model.
+
+### Model Architecture
+The LSTM neural network was chosen for sentiment classification, which was transformed into a function to enable hyperparameter tuning. The model consists of an Embedding layer, SpatialDropout1D layer, LSTM layer with adjustable hyperparameters (units and dropout rate), and a Dense output layer with three neurons corresponding to the three sentiment classes (Positive, Negative, and Neutral). The activation function for the output layer was changed to categorical_crossentropy to accommodate multi-label classification.
+
+### Hyperparameter Tuning
+To find the best combination of hyperparameters for the LSTM model, a RandomizedSearchCV approach was implemented. The hyperparameter search space includes 'units' and 'dropout_rate.' The algorithm iterated through various combinations and retained the hyperparameters with the highest accuracy on the validation set.
+
+### Training the Model
+The model was trained with the best hyperparameters obtained from RandomizedSearchCV. The training process was conducted over five epochs, and adjustments to the epoch values were made to achieve higher training and validation accuracies (around 0.9 and 0.85, respectively).
+
+### Sentiment Prediction
+To evaluate the model, I generated 100 random test sentences with either positive or negative sentiments. The model was tested on these sentences, and the accuracy of the predictions was calculated and displayed. Prior to adjusting the model to multi-label classification, the accuracy of the model's performance on test data was .89.
+
+### Results and Conclusion
+With the multi-label classification setup and hyperparameter tuning, the sentiment analysis project achieved a test accuracy of approximately 0.84, demonstrating the effectiveness of the LSTM neural network in handling multi-label sentiment classification tasks. While GPUs could potentially improve model optimization, the current implementation showcases a practical application of machine learning in analyzing customer sentiments towards airline services.
+
+In conclusion, the sentiment analysis project successfully adapted the source code to handle multi-label classification and utilized hyperparameter tuning for enhanced accuracy. Further improvements could be explored with larger and more diverse datasets, as well as additional optimization techniques with GPU support.
+
+---
 
