@@ -16,10 +16,9 @@ each person spends within the region.
 
 To run this project on your local machine, follow these steps:
 
-1. Clone this repository: `git clone https://github.com/yourusername/center-point-tracking.git`
-2. Install the required dependencies: `pip install opencv-python pytube`
-3. Download the YOLOv3 model files and place them in the appropriate directory.
-4. Run the script: `python center_point_timer.py`
+1. Download source code from https://techvidvan.com/tutorials/opencv-vehicle-detection-classification-counting/
+2. Install dependencies from link above.
+3. Replace main script with: `python center_point_timer.py`
 
 Make sure to customize the region coordinates and other settings according to your requirements.
 
