@@ -11,10 +11,11 @@ to note that shuffling should be avoided for the validation and test sets to ens
 results.After getting an mIOU of around 94% on the train data and around 88% on the validation data, I saved the predicted masks that were produced.
 
 
-![Figure 1: Unet architecture](https://imgur.com/a/eBouwYJ)
+![Figure 1: Unet architecture](https://i.imgur.com/TRhY6t3.png)
+![Figure 1: Unet architecture](https://i.imgur.com/IMAGE_ID.jpg)
 
 
-![Figure 2: mIOU vs Epoch graph](https://imgur.com/a/aEeCF7d))
+![Figure 2: mIOU vs Epoch graph](https://i.imgur.com/V2x5VHE.png))
 
 I then prepared two point clouds: one  down-sampled from the .obj file of the object and the other, which was projected from 
  the depth image of the object. Following this, I used Iterative Closest Point (ICP) to align the two point clouds, outputting a transformation that
@@ -22,7 +23,7 @@ turns the sampled cloud to the projected one. Following this, I conducted object
 visualize the results.
 
 
-![Figure 3: Results Visualized](https://imgur.com/a/wZvE4ME))
+![Figure 3: Results Visualized](https://i.imgur.com/RoK1Mhd.png))
 
 ## Features
 
