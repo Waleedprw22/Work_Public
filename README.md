@@ -1,6 +1,5 @@
 # Machine Learning and Computer Vision Projects
 
-![Banner Image](banner.jpg) 
 
 Welcome to my repository of Machine Learning and Computer Vision projects! Here, you'll find a collection of projects that showcase my skills, knowledge, and passion for these exciting fields. Each project demonstrates different aspects of machine learning, deep learning, computer vision, and more.
 
