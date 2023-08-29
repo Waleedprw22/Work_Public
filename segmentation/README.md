@@ -11,7 +11,8 @@ to note that shuffling should be avoided for the validation and test sets to ens
 results.After getting an mIOU of around 94% on the train data and around 88% on the validation data, I saved the predicted masks that were produced.
 
 
-![Figure 1: Unet architecture](https://imgur.com/a/eBouwYJ))
+![Figure 1: Unet architecture](https://imgur.com/a/eBouwYJ)
+
 
 ![Figure 2: mIOU vs Epoch graph](https://imgur.com/a/aEeCF7d))
 
