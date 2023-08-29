@@ -16,7 +16,7 @@ results.After getting an mIOU of around 94% on the train data and around 88% on 
 
 Figure 1 above illustrates the Unet architecture used to inspire the mini U-net instance.
 
-![Figure 2: mIOU vs Epoch graph](https://i.imgur.com/V2x5VHE.png))
+![Figure 2: mIOU vs Epoch graph](https://i.imgur.com/V2x5VHE.png)
 
 
 
@@ -30,7 +30,7 @@ turns the sampled cloud to the projected one. Following this, I conducted object
 visualize the results.
 
 
-![Figure 3: Results Visualized](https://i.imgur.com/RoK1Mhd.png))
+![Figure 3: Results Visualized](https://i.imgur.com/RoK1Mhd.png)
 
 
 
