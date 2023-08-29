@@ -1,7 +1,34 @@
-# Work_Public
+# Machine Learning and Computer Vision Projects
 
-The files here are split into three main categories: reinforcement learning projects, computer vision, and then other ML projects. For the reinforcement learning files, the Planner and Controller codes were prepared to train a bot to control and optimize the performance of a character in PyTux Superkart. I experimented with different approaches but focused primarily on reinforcement learning, convolutional networks and Q learning. Some of my work from that project is attached here.
+![Banner Image](banner.jpg) 
 
-I have also included some of my work at the Columbia University Robotics club in the computer vision folder. I am working on the perception team for our autonomous vehicle and our mate rover. For the autonomous vehicle, we are trying to train the vehicle to detect objects and to act accordingly. For the mate rover, we will be taking images under water, process those images and reconstruct a 3d image/model of coral reefs.
+Welcome to my repository of Machine Learning and Computer Vision projects! Here, you'll find a collection of projects that showcase my skills, knowledge, and passion for these exciting fields. Each project demonstrates different aspects of machine learning, deep learning, computer vision, and more.
 
-More to be added soon.
+## Project List
+
+Here's a list of some of the projects you'll find in this repository:
+
+1. **GestureSlide: Interactive Presentation Tool**
+   - Description: An interactive presentation control application that combines hand gesture recognition and voice integration for navigating presentation slides.
+
+2. **Person Tracker*
+   - Description: Utilized YOLOv3 and OpenCV to identify people, monitoring population density in a given region with time..
+
+3. **Sentiment Analysis**
+   - Description: Utilized LSTM and hyperparamater tuning to predict if sentences are either positive, negative or neutral..
+  
+
+... (More projects to be added. Currently cleaning and re-organizing my repo)
+
+## Getting Started
+
+Each project has its own README with instructions on how to set up and run the project. Follow the instructions in each project's README to explore the projects and understand the underlying concepts.
+
+
+## Contact
+
+If you have any questions or would like to connect, you can reach me at [wk2383@columbia.edu](mailto:your.email@example.com).
+
+Thank you for visiting and exploring my projects!
+
+
