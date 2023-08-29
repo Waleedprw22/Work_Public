@@ -12,7 +12,6 @@ results.After getting an mIOU of around 94% on the train data and around 88% on 
 
 
 ![Figure 1: Unet architecture](https://i.imgur.com/TRhY6t3.png)
-![Figure 1: Unet architecture](https://i.imgur.com/IMAGE_ID.jpg)
 
 
 ![Figure 2: mIOU vs Epoch graph](https://i.imgur.com/V2x5VHE.png))
