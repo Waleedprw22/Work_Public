@@ -12,9 +12,11 @@ results.After getting an mIOU of around 94% on the train data and around 88% on 
 
 
 ![Figure 1: Unet architecture](https://i.imgur.com/TRhY6t3.png)
-
+ Figure 1 above illustrates the Unet architecture used to inspire the mini U-net instance.
 
 ![Figure 2: mIOU vs Epoch graph](https://i.imgur.com/V2x5VHE.png))
+Figure 2 above illustrates the metrics of interest to me in this project over time. This part required a lot of debugging, trial and error to get the model's performance to this point.
+
 
 I then prepared two point clouds: one  down-sampled from the .obj file of the object and the other, which was projected from 
  the depth image of the object. Following this, I used Iterative Closest Point (ICP) to align the two point clouds, outputting a transformation that
@@ -23,7 +25,7 @@ visualize the results.
 
 
 ![Figure 3: Results Visualized](https://i.imgur.com/RoK1Mhd.png))
-
+Figure 3 above shows the results visualized in mesh lab side by side with the simulation.
 ## Features
 
 - Implementation of a neural network for instance segmentation of objects in RGB images.
