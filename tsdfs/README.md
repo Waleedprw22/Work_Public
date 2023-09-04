@@ -5,3 +5,4 @@ Welcome to my 3D transformation and fusion project for Computational Aspects of 
 transformations, point clouds, and truncatsed signed distance functions.
 
 
+![Visualized Results](https://i.imgur.com/kDdlkSm.png)
