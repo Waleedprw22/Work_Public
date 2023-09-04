@@ -22,7 +22,7 @@ Here's a list of some of the projects you'll find in this repository:
    - Description: Conducted instance segmentation and conducted object post estimation
 6. **tsdfs**
    - Description: Utilized tsdf fusion loop to generate 3D Wall-E mesh.
-   - 
+     
 ... (More projects to be added)
 
 ## Getting Started
