@@ -1,6 +1,6 @@
 # Instance Segmentation and Object Pose Estimation Project
 
-Welcome to the Instance Segmentation and Object Pose Estimation project! In this project, we tackle the challenges of instance segmentation and estimating the pose of objects using RGB images and depth information.
+Welcome to the Instance Segmentation and Object Pose Estimation project! In this project, I tackled the challenges of instance segmentation and estimating the pose of objects using RGB images and depth information.
 
 ## Project Outline
 
