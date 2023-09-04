@@ -10,14 +10,20 @@ Here's a list of some of the projects you'll find in this repository:
 1. **GestureSlide: Interactive Presentation Tool**
    - Description: An interactive presentation control application that combines hand gesture recognition and voice integration for navigating presentation slides.
 
-2. **Person Tracker*
-   - Description: Utilized YOLOv3 and OpenCV to identify people, monitoring population density in a given region with time..
+2. **Person Tracker**
+   - Description: Utilized YOLOv3 and OpenCV to identify people, monitoring population density in a given region with time.
 
 3. **Sentiment Analysis**
-   - Description: Utilized LSTM and hyperparamater tuning to predict if sentences are either positive, negative or neutral..
-  
-
-... (More projects to be added. Currently cleaning and re-organizing my repo)
+   - Description: Utilized LSTM and hyperparamater tuning to predict if sentences are either positive, negative or neutral.
+     
+4. **RRT Algorithm**
+   - Description: Using RRT algorithm for path planning in order to manipulate a simulated UR5 robot while avoiding obstacles in a cluttered environment.
+5. **Segmentation**
+   - Description: Conducted instance segmentation and conducted object post estimation
+6. **tsdfs**
+   - Description: Utilized tsdf fusion loop to generate 3D Wall-E mesh.
+   - 
+... (More projects to be added)
 
 ## Getting Started
 
