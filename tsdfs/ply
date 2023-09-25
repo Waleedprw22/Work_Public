@@ -21,9 +21,7 @@ class Ply(object):
                 corresponding 3D point. Defaults to None.
         """
         super().__init__()
-        # TODO: If ply path is None, load in triangles, point, normals, colors.
-        #       else load ply from file. If ply_path is specified AND other inputs
-        #       are specified as well, ignore other inputs.
+       
         if ply_path == None:
             self.triangles = triangles
             self.points = points
@@ -61,12 +59,9 @@ class Ply(object):
 
 
 
-        # TODO: If normals are not None make sure that there are equal number of points and normals.
         if normals is not None and points.shape[0] != normals.shape[0]:
               raise Exception("Sorry, there isn't an equal number of points and normals")
 
-        # TODO: If colors are not None make sure that there are equal number of colors and normals.
-        #pass
         
         if colors is None and colors.shape[0] != normals.shape[0]:
             raise Exception("Sorry, there isn't an equal number of colors and normals")
@@ -78,12 +73,8 @@ class Ply(object):
         Args:
             ply_path (str): Output ply path.
         """
-        # TODO: Write header depending on existance of normals, colors, and triangles.
-        # TODO: Write points.
-        # TODO: Write normals if they exist.
-        # TODO: Write colors if they exist.
-        # TODO: Write face list if needed.
-        #pass
+        
+    
         with open(ply_path, 'w') as ply:
             ply.write('ply \nformat ascii 1.0 \nelement vertex ' + str(self.points.shape[0]))
             ply.write('\nproperty float x \nproperty float y \nproperty float z\n') #To add points
@@ -150,7 +141,7 @@ class Ply(object):
         Args:
             ply_path (str): ply to read in.
         """
-        # TODO: Read in ply.
+    
         if ply_path is None:
             raise Exception("Input for ply_path is none- inappropriate input")
         
@@ -159,4 +150,4 @@ class Ply(object):
                 ply.read()
                 
 
-        #pass
+     
