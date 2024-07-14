@@ -1,9 +1,7 @@
 import os
-
 import torch
 from torch.utils.data import Dataset
 from torchvision import transforms
-
 import image
 
 
@@ -25,14 +23,9 @@ class RGBDataset(Dataset):
 
         self.dataset_dir = dataset_dir
         self.has_gt = has_gt
-        # TODO: transform to be applied on a sample.
-        #  For this homework, compose transforms.ToTensor() and transforms.Normalize() for RGB image should be enough.
-        #self.transform = None
+      
+       
         self.transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize(mean_rgb, std_rgb)])
-
-        # TODO: number of samples in the dataset.
-        #  You'd better not hard code the number,
-        #  because this class is used to create train, validation and test dataset (which have different sizes).
         self.dataset_length = os.listdir
 
     def __len__(self):
@@ -43,8 +36,6 @@ class RGBDataset(Dataset):
             self.dataset_length = len(os.listdir('/home/jupyter/dataset/val/rgb'))
         if 'test' in self.dataset_dir:
             self.dataset_length = len(os.listdir('/home/jupyter/dataset/test/rgb'))
-        
-        
         return self.dataset_length
 
     def __getitem__(self, idx):
@@ -66,7 +57,7 @@ class RGBDataset(Dataset):
         #gt_mask = None
         
         
-        #rgbimg = str(idx) + '_rgb.png'
+      
         if 'train' in self.dataset_dir:
             rgbimg = "/home/jupyter/dataset/train/rgb/" + str(idx) + '_rgb.png'
             gtmask = "/home/jupyter/dataset/train/gt/" + str(idx) + '_gt.png'
@@ -79,12 +70,7 @@ class RGBDataset(Dataset):
         
         rgb_img = image.read_rgb(rgbimg)
 
-        
-        #gt_mask = image.read_mask(gtmask)
-        
-        
-
-
+    
         if self.has_gt is False or 'test' in self.dataset_dir:
             
             rgb_img = self.transform(rgb_img)
@@ -97,9 +83,5 @@ class RGBDataset(Dataset):
             gt_mask = torch.LongTensor(gt_mask)
             sample = {'input': rgb_img, 'target': gt_mask}
             
-        #target = gt_mask
-        #if self.transform:
-            
-            #target = torch.LongTensor(gt_mask)
             
         return sample
