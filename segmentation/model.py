@@ -2,9 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-
 class MiniUNet(nn.Module):
-    # TODO: implement a neural network as described in the handout
     def __init__(self):
         """Initialize the layers of the network as instance variables."""
         super(MiniUNet, self).__init__()
@@ -26,25 +24,16 @@ class MiniUNet(nn.Module):
         Purpose:
             Forward process. Pass the input x through the layers defined in __init__() to get the output.
         """
-        # TODO
+    
         x = F.relu(self.conv1(x))
-        
         down_sample = self.pool(x) #step 1 done
-
         down_sample = F.relu(self.conv_2(down_sample)) #just added
-        
-       
         up_sample = torch.nn.functional.interpolate(down_sample, scale_factor = 2)
-      
         
         x = torch.cat((up_sample, x),1)
-
         x = (F.relu(self.conv2(x)))
         output = self.conv3(x)
-        
-        
         return output
-
 
 if __name__ == '__main__':
     model = MiniUNet()
