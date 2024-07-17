@@ -1,5 +1,3 @@
-
-# ## Sentiment Analysis 
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -12,20 +10,16 @@ from tensorflow.keras.layers import LSTM, Dense, Dropout, SpatialDropout1D, Embe
 from tensorflow.keras.utils import to_categorical
 
 
-#______________________________Data_pre-processing____________________________#
+# Data_pre-processing
 df = pd.read_csv("./Tweets.csv")
 
 tweet_df = df[['text','airline_sentiment']]
-
-#tweet_df = tweet_df[tweet_df['airline_sentiment'] != 'neutral']
-#tweet_df = tweet_df[tweet_df['airline_sentiment']]
 sentiment_label = tweet_df.airline_sentiment.factorize() #Convert words into numerical labels
 
 tweet_df['airline_sentiment'] = sentiment_label[0]  #Replace original dataframe with the numerical sentiments.
 sentiment_label = to_categorical(sentiment_label[0]) #converts numerical values into binary representation
 
-#___________________Tokenize______________________#
-
+# Tokenize the tweets
 tweet = tweet_df.text.values
 tokenizer = Tokenizer(num_words=5000)
 tokenizer.fit_on_texts(tweet)
@@ -33,11 +27,6 @@ vocab_size = len(tokenizer.word_index) + 1
 encoded_docs = tokenizer.texts_to_sequences(tweet)
 padded_sequence = pad_sequences(encoded_docs, maxlen=200)
 
-
-#________________________Tokenize___________#
-
-
-#_________________________________MODEL__________________________________#
 
 embedding_vector_length = 50 #change from 32 to 50. Increased accuracy by a slight bit.
 
@@ -51,7 +40,7 @@ def create_lstm_model(units=50, dropout_rate=0.2):
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
 
-#Define hyperparameter search space
+# Define hyperparameter search space
 param_dist = {
     'units': [32, 64, 128],
     'dropout_rate': [0.2, 0.3, 0.4]
@@ -65,7 +54,6 @@ best_params = {}
 for units in param_dist['units']:
     for dropout_rate in param_dist['dropout_rate']:
         print(f"Training with units={units}, dropout_rate={dropout_rate}")
-        
         model = create_lstm_model(units=units, dropout_rate=dropout_rate)
         
         history = model.fit(padded_sequence, sentiment_label, validation_split=0.2, epochs=5, batch_size=32, verbose=0)
@@ -81,8 +69,6 @@ print("Best Hyperparameters: ", best_params)
 best_model = create_lstm_model(units=best_params['units'], dropout_rate=best_params['dropout_rate'])
 best_model = create_lstm_model()
 history = best_model.fit(padded_sequence, sentiment_label, validation_split=0.2, epochs=5, batch_size=32) 
-
-
 
 plt.plot(history.history['accuracy'], label='acc')
 plt.plot(history.history['val_accuracy'], label='val_acc')
