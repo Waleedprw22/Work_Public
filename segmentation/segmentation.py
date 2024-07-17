@@ -25,13 +25,16 @@ def iou(prediction, target):
     batch_num = prediction.shape[0]
     class_num = prediction.shape[1]
     batch_ious = list()
+    
     for batch_id in range(batch_num):
         class_ious = list()
+        
         for class_id in range(1, class_num):  # class 0 is background
             mask_pred = (pred[batch_id] == class_id).int()
             mask_target = (target[batch_id] == class_id).int()
             if mask_target.sum() == 0: # skip the occluded object
                 continue
+                
             intersection = (mask_pred * mask_target).sum()
             union = (mask_pred + mask_target).sum() - intersection
             class_ious.append(float(intersection) / float(union))
@@ -144,8 +147,7 @@ def train(model, device, train_loader, criterion, optimizer):
     model.to(device)
     model.train()
     train_loss, train_iou = 0, 0
-    # TODO
-
+   
      # loop over the dataset multiple times
     
     count = 0
@@ -199,7 +201,6 @@ def val(model, device, val_loader, criterion):
         #pass
     return val_loss, val_iou
 
-
 def main():
     # Check if GPU is being detected
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -234,37 +235,38 @@ def main():
     train_dataset = RGBDataset(train_dir, has_gt1 ) # Was None before
     val_dataset = RGBDataset(val_dir, has_gt2)
     test_dataset = RGBDataset(test_dir, has_gt3)
-
-    
-    # TODO: Prepare Dataloaders. Only shuffle the training set. You can use check_dataloader(your_dataloader) to check your implementation.
+    # Prepare the data loaders
     train_loader = DataLoader(train_dataset, batch_size = 1, shuffle = True) #None before. change batch size from 4 to 5
     val_loader = DataLoader(val_dataset, batch_size = 2, shuffle = False)
     test_loader = DataLoader(test_dataset, batch_size = 3, shuffle = False)
     
 
-    # TODO: Prepare model
+    # Prepare model
     model = MiniUNet()
 
-    # TODO: Define criterion and optimizer
+    # Define criterion and optimizer
     criterion = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=.1, momentum=0.9) #lr = 0.01 works decent
-    #optimizer = torch.optim.Adam(model.parameters(), lr=0.001,eps=1e-08) #lr = .01 works decent. 0.009 is really good. 0.0099, 0.0089 aii .0014, .0016, 0.0021, 0.0024, 0.0026, 0.0033, 0.0045, 0.0046
+
     # Train and validate the model
-    # TODO: Remember to include the saved learning curve plot in your report
     train_loss_list, train_miou_list, val_loss_list, val_miou_list = list(), list(), list(), list()
     epoch, max_epochs = 1, 30  # TODO: you may want to make changes here. 16 before
     best_miou = float('-inf')
     while epoch <= max_epochs:
         print('Epoch (', epoch, '/', max_epochs, ')')
         train_loss, train_miou = train(model, device, train_loader, criterion, optimizer)
+        
         val_loss, val_miou = val(model, device, val_loader, criterion)
         train_loss_list.append(train_loss)
+        
         train_miou_list.append(train_miou)
         val_loss_list.append(val_loss)
         val_miou_list.append(val_miou)
+        
         print('Train loss & mIoU: %0.2f %0.2f' % (train_loss, train_miou))
         print('Validation loss & mIoU: %0.2f %0.2f' % (val_loss, val_miou))
         print('---------------------------------')
+        
         if val_miou > best_miou:
             best_miou = val_miou
             save_chkpt(model, epoch, val_miou)
@@ -275,7 +277,6 @@ def main():
     save_prediction(model, device, val_loader, val_dir)
     save_prediction(model, device, test_loader, test_dir)
     save_learning_curve(train_loss_list, train_miou_list, val_loss_list, val_miou_list)
-
 
 if __name__ == '__main__':
     main()
