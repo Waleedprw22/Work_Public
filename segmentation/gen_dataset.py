@@ -1,11 +1,8 @@
 import os
-
 import pybullet as p
 import pybullet_data
-
 import objects
 from camera import Camera, save_obs
-
 
 def main():
     physics_client = p.connect(p.GUI)
@@ -37,12 +34,14 @@ def main():
         "011_banana",
         "024_bowl",
     ]
+    
     num_obj = len(list_obj_foldername)
     list_obj_position = [[-0.1, -0.1, 0.1], [-0.1, 0.1, 0.1], [0.1, -0.1, 0.1], [0.1, 0.1, 0.1], [0, 0, 0.1], ]
     list_obj_orientation = objects.gen_obj_orientation(
         num_scene=training_scene,
         num_obj=num_obj
     )
+    
     list_obj_id = objects.load_obj(
         list_obj_foldername,
         list_obj_position,
@@ -55,14 +54,17 @@ def main():
         os.makedirs(dataset_dir)
         os.makedirs(dataset_dir + "rgb/")
         os.makedirs(dataset_dir + "gt/")
+        
     print("Start generating the training set.")
     print(f'==> 1 / {training_scene}')
+    
     save_obs(
         dataset_dir,
         my_camera,
         num_obs=num_observation,
         scene_id=0
     )
+    
     for i in range(1, training_scene):
         print(f'==> {i+1} / {training_scene}')
         objects.reset_obj(
@@ -79,7 +81,6 @@ def main():
         )
 
     p.disconnect()
-
 
 if __name__ == '__main__':
     main()
