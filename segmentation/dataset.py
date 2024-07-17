@@ -52,12 +52,7 @@ class RGBDataset(Dataset):
             Use image.read_rgb() and image.read_mask() to read the images.
             Think about how to associate idx with the file name of images.
         """
-        # TODO: read RGB image and ground truth mask, apply the transformation, and pair them as a sample.
-        #rgb_img = None
-        #gt_mask = None
         
-        
-      
         if 'train' in self.dataset_dir:
             rgbimg = "/home/jupyter/dataset/train/rgb/" + str(idx) + '_rgb.png'
             gtmask = "/home/jupyter/dataset/train/gt/" + str(idx) + '_gt.png'
@@ -69,19 +64,15 @@ class RGBDataset(Dataset):
             #gtmask = "/home/jupyter/dataset/test/gt/" + str(idx) + '_gt.png'
         
         rgb_img = image.read_rgb(rgbimg)
-
-    
+        
         if self.has_gt is False or 'test' in self.dataset_dir:
-            
             rgb_img = self.transform(rgb_img)
             sample = {'input': rgb_img}
-            
             
         if self.has_gt is True and 'test' not in self.dataset_dir: #Added the second part
             rgb_img = self.transform(rgb_img)
             gt_mask = image.read_mask(gtmask)
             gt_mask = torch.LongTensor(gt_mask)
             sample = {'input': rgb_img, 'target': gt_mask}
-            
             
         return sample
