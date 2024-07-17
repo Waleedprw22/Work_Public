@@ -1,11 +1,11 @@
 import numpy as np
 import os
 
-
 class Ply(object):
-    """Class to represent a ply in memory, read plys, and write plys.
     """
-
+    Class to represent a ply in memory, read plys, and write plys.
+    """
+    
     def __init__(self, ply_path=None, triangles=None, points=None, normals=None, colors=None):
         """Initialize the in memory ply representation.
 
@@ -51,30 +51,23 @@ class Ply(object):
                             normals.append(Num_list[3:5])
                         if len(Num_list == 9): #this implies it has both normals and colors
                             colors.append(Num_list[6:8])
-            #In case len(Num_list ==6 and it isnt normals, we need to see if "property float nx" exists
+                            
+            # In case len(Num_list == 6 and it isnt normals, we need to see if "property float nx" exists
                 file.close()
                         
-            
-
-
-
 
         if normals is not None and points.shape[0] != normals.shape[0]:
               raise Exception("Sorry, there isn't an equal number of points and normals")
-
-        
         if colors is None and colors.shape[0] != normals.shape[0]:
             raise Exception("Sorry, there isn't an equal number of colors and normals")
 
 
     def write(self, ply_path):
-        """Write mesh, point cloud, or oriented point cloud to ply file.
-
+        """
+        Write mesh, point cloud, or oriented point cloud to ply file.
         Args:
             ply_path (str): Output ply path.
         """
-        
-    
         with open(ply_path, 'w') as ply:
             ply.write('ply \nformat ascii 1.0 \nelement vertex ' + str(self.points.shape[0]))
             ply.write('\nproperty float x \nproperty float y \nproperty float z\n') #To add points
@@ -101,14 +94,14 @@ class Ply(object):
                     G = self.colors[i][1]
                     B = self.colors[i][2]
                     ply.write(str(x) +' ' + str(y) + ' ' + str(z) + ' ' + str(x_n) +' ' + str(y_n) + ' ' + str(z_n) + ' ' +  str(R) +' ' + str(G) + ' ' + str(B) +'\n')
+                    
                 for i in range(0,self.triangles.shape[0]):
                     v1 = self.triangles[i][0]
                     v2 = self.triangles[i][1]
                     v3 = self.triangles[i][2]
                     ply.write(str(3) +' ' + str(v1) + ' ' + str(v2) + ' ' + str(v3))
                     ply.write('\n')
-            else:
-                
+            else:           
                 ply.write('end_header\n')
                 #ply_array =[]
                 for i in range(0,self.points.shape[0]):
@@ -122,13 +115,7 @@ class Ply(object):
                     G = self.colors[i][1]
                     B = self.colors[i][2]
                     ply.write(str(x) +' ' + str(y) + ' ' + str(z) + ' ' + str(x_n) +' ' + str(y_n) + ' ' + str(z_n) + ' ' +  str(R) +' ' + str(G) + ' ' + str(B))
-                    #ply_array.append(self.points[i][0])
-                    #ply_array.append(self.points[i][1])
-                    #ply_array.append(self.points[i][2])
-                    #ply_array.append(self.normals[i])
-                    #ply_array.append(self.colors[i])
-                    #ply.write('\n ' + str(ply_array))
-                
+                 
                     ply.write('\n')
 
                     
@@ -136,15 +123,14 @@ class Ply(object):
 
 
     def read(self, ply_path):
-        """Read a ply into memory.
-
+        """
+        Read a ply into memory.
         Args:
             ply_path (str): ply to read in.
         """
-    
+        
         if ply_path is None:
             raise Exception("Input for ply_path is none- inappropriate input")
-        
         else:
             with open(ply_path) as ply:
                 ply.read()
